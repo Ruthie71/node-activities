@@ -12,7 +12,7 @@ const checkIfActivtyInArray = (id) => {
 };
 
 export const getAll = (req, res) => res.json(activities);
-export const getSingle = (req, res) => res.json("Get single activity");
+
 export const createActivty = (req, res) => {
     const [id, name] = req.body;
 
@@ -30,6 +30,17 @@ export const createActivty = (req, res) => {
     };
     activities.push(newActivity);
     res.json(newActivity);
+};
+
+export const getSingle = (req, res) => {
+    const { id } = req.params;
+    const activity = checkIfActivtyInArray(id);
+
+    if (!activity)
+        return res
+            .status(404)
+            .json({ error: "Activity does not exist in the site" });
+    res.status(200).json(activity);
 };
 
 export const updateActivity = (req, res) => res.json("Update single activity");
