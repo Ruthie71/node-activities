@@ -5,6 +5,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 //Middeware model
+app.use(express.json());
 app.use("/activity", activityRouter);
 
 // app.route("/categories")
